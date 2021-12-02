@@ -14,36 +14,28 @@ impl Day for Day2 {
           "forward" => [amount, 0],
           "down" => [0, amount],
           "up" => [0, -amount],
-          _ => [0, 0]
+          _ => [0, 0],
         }
-      });
-
-    let lines = lines.collect::<Vec<_>>();
+      })
+      .collect::<Vec<_>>();
 
     let part1 = || {
-      let mut hor = 0;
-      let mut dep = 0;
-
-      for [x, y] in lines.clone() {
-        hor += x;
-        dep += y;
-      }
+      let [hor, dep] = lines
+        .clone()
+        .into_iter()
+        .reduce(|[hor, dep], [x, y]| [hor + x, dep + y])
+        .unwrap();
 
       hor * dep
     };
 
-
-    let lines = lines.clone();
     let part2 = || {
-      let mut hor = 0;
-      let mut dep = 0;
-      let mut aim = 0;
-
-      for [x, y] in lines {
-        hor += x;
-        aim += y;
-        dep += x * aim;
-      }
+      let [hor, dep, _] = lines
+        .clone()
+        .into_iter()
+        .fold([0, 0, 0], |[hor, dep, aim], [x, y]| {
+          [hor + x, dep + x * aim, aim + y]
+        });
 
       hor * dep
     };
