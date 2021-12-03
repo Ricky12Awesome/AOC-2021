@@ -3,7 +3,7 @@ pub use std::fmt::Debug;
 #[macro_export]
 macro_rules! answer {
   ($answer:expr) => {
-    Some(Box::new($answer))
+    Some($answer)
   };
   ($part:expr, $p1:expr, $p2:expr) => {
     match $part {
@@ -16,27 +16,41 @@ macro_rules! answer {
 
 #[macro_export]
 macro_rules! day {
-    ($name:ident) => {
-      pub struct $name;
+  ($name:ident) => {
+    day!($name, None, None);
+  };
+  ($name:ident, $p1:expr, $p2:expr) => {
+    pub struct $name;
 
-      impl Input for $name {
-        const INPUT: &'static str = include_str!(concat!("../assets/", stringify!($name)));
-      }
+    impl Input for $name {
+      const INPUT: &'static str = include_str!(concat!("../assets/", stringify!($name)));
+    }
 
-      generate_tests_for_day!($name);
-    };
+    generate_tests_for_day!($name, $p1, $p2);
+  };
 }
 
 #[macro_export]
 macro_rules! generate_tests_for_day {
-  ($day:ident) => {
+  ($day:ident, $p1:expr, $p2:expr) => {
     #[test]
     pub fn both() {
-      let answer = $day::day(Part::Both);
+      let [part1, part2] = $day::day(Part::Both);
+      let p1 = $p1;
+      let p2 = $p2;
       let day = stringify!($day).trim_start_matches("Day");
 
-      println!("Day {day} Part 1: {:?}", answer[0]);
-      println!("Day {day} Part 2: {:?}", answer[1]);
+      println!("Day {day} Part 1: {:?}", part1);
+
+      if let Some(_) = p1 {
+        assert_eq!(part1, p1);
+      }
+
+      println!("Day {day} Part 2: {:?}", part2);
+
+      if let Some(_) = p2 {
+        assert_eq!(part2, p2);
+      }
     }
 
     #[test]
@@ -65,12 +79,8 @@ pub enum Part {
 }
 
 #[allow(dead_code)]
-pub type Answer = [Option<Box<dyn Debug>>; 2];
+pub type Answer<T> = [Option<T>; 2];
 
 pub trait Input {
   const INPUT: &'static str = "";
-}
-
-pub trait Day: Input {
-  fn day(part: Part) -> Answer;
 }

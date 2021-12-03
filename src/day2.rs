@@ -1,9 +1,9 @@
 use crate::day::*;
 
-day!(Day2);
+day!(Day2, Some(1936494), Some(1997106066));
 
-impl Day for Day2 {
-  fn day(part: Part) -> Answer {
+impl Day2 {
+  fn day(part: Part) -> Answer<i32> {
     let lines = Self::INPUT
       .lines()
       .map(|line| line.split_once(" ").unwrap())
