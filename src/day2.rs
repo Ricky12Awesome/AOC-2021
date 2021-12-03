@@ -11,26 +11,22 @@ impl Day for Day2 {
       .map(|(pos, amount)| match pos {
         "forward" => [amount, 0],
         "down" => [0, amount],
-        "up"=> [0, -amount],
-        _ => [0, 0],
+        "up" => [0, -amount],
+        _ => unreachable!(),
       })
       .collect::<Vec<_>>();
 
     let part1 = || {
       let [hor, dep] = lines
         .iter()
-        .fold([0, 0], |[hor, dep], [x, y]| [hor + x, dep + y]);
-
+        .fold([0, 0], |[x1, y1], [x2, y2]| [x1 + x2, y1 + y2]);
       hor * dep
     };
 
     let part2 = || {
-      let [hor, dep, _] = lines
-        .iter() // rustfmt likes putting this on one long line for some reason, this is here to stop it
-        .fold([0, 0, 0], |[hor, dep, aim], [x, y]| {
-          [hor + x, dep + x * aim, aim + y]
-        });
-
+      let [hor, dep, _] = lines.iter().fold([0, 0, 0], |[x1, y1, z1], [x2, y2]| {
+        [x1 + x2, y1 + x2 * z1, z1 + y2]
+      });
       hor * dep
     };
 
