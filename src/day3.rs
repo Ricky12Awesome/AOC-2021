@@ -1,13 +1,5 @@
 use crate::day::*;
 
-// let mut arr = [[0 as char; 1000]; 12];
-//
-// for (line_n, line) in lines.enumerate() {
-//   for (line_c, c) in line.enumerate() {
-//     arr[line_c][line_n] = c;
-//   }
-// }
-
 day!(Day3, Some(3687446), Some(4406844));
 
 impl Day3 {
@@ -36,7 +28,7 @@ impl Day3 {
           x |= 1 << i;
         }
       }
-@
+
       let x = x.reverse_bits() >> offset;
       let y = (!x << offset) >> offset;
 
