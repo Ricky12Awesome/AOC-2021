@@ -55,18 +55,28 @@ macro_rules! generate_tests_for_day {
 
     #[test]
     pub fn part1() {
-      let answer = $day::day(Part::One);
+      let [part1, _] = $day::day(Part::One);
       let day = stringify!($day).trim_start_matches("Day");
+      let p1 = $p1;
 
-      println!("Day {day} Part 1: {:?}", answer[0]);
+      if let Some(_) = p1 {
+        assert_eq!(part1, p1);
+      }
+
+      println!("Day {day} Part 1: {:?}", part1);
     }
 
     #[test]
     pub fn part2() {
-      let answer = $day::day(Part::Two);
+      let [_, part2] = $day::day(Part::Two);
       let day = stringify!($day).trim_start_matches("Day");
+      let p2 = $p2;
 
-      println!("Day {day} Part 2: {:?}", answer[1]);
+      println!("Day {day} Part 2: {:?}", part2);
+
+      if let Some(_) = p2 {
+        assert_eq!(part2, p2);
+      }
     }
   };
 }
