@@ -1,5 +1,4 @@
 use crate::day::*;
-use itertools::Itertools;
 
 day!(Day3, Some(3687446), Some(4406844));
 
