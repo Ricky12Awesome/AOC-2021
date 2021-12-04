@@ -75,6 +75,8 @@ impl Day4 {
       ret
     };
 
+    let mut won = vec![false; boards.len()];
+
     'root: for n in numbers {
       for (ib, board) in boards.clone().iter().enumerate() {
         for (ir, row) in board.iter().enumerate() {
@@ -85,10 +87,11 @@ impl Day4 {
 
             let mut sum = 0;
 
-            if check(&boards[ib], &mut sum) {
+            if check(&boards[ib], &mut sum) && !won[ib] {
               println!("{n} {sum} {}", n * sum);
               println!("{:?}", board);
-              break 'root;
+              won[ib] = true;
+              // break 'root;
             }
           }
 
