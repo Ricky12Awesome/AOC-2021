@@ -11,11 +11,9 @@ impl Day4 {
       .collect_vec();
 
     let mut won_history = vec![];
-    let mut won = [0; 100];
-    let mut sum = [0; 100];
     let mut values = [[[0; 5]; 5]; 100];
-    let mut row_marked = [[[false; 5]; 5]; 100];
-    let mut col_marked = [[[false; 5]; 5]; 100];
+    let [mut won, mut sum] = [[0; 100]; 2];
+    let [mut row_marked, mut col_marked] = [[[[false; 5]; 5]; 100]; 2];
 
     for n in numbers {
       for (id, board) in boards.chunks(5).enumerate() {
@@ -45,9 +43,7 @@ impl Day4 {
       }
     }
 
-    won_history.remove(won_history.len() - 1);
-    let (first, last) = (*won_history.first().unwrap(), *won_history.last().unwrap());
-
+    let (first, last) = (won_history[0], won_history[won_history.len() - 2]);
     let part1 = || won[first] * sum[first];
     let part2 = || won[last] * sum[last];
 
