@@ -1,7 +1,7 @@
 use crate::day::*;
 use itertools::Itertools;
 
-day!(Day4);
+day!(Day4, Some(49860), Some(24628));
 
 impl Day4 {
   fn day(part: Part) -> Answer<u32> {
@@ -76,8 +76,10 @@ impl Day4 {
     };
 
     let mut won = vec![false; boards.len()];
+    let mut p1 = 0;
+    let mut p2 = 0;
 
-    'root: for n in numbers {
+    for n in numbers {
       for (ib, board) in boards.clone().iter().enumerate() {
         for (ir, row) in board.iter().enumerate() {
           let marked = row.iter().positions(|it| it.0 == n).collect_vec();
@@ -88,21 +90,21 @@ impl Day4 {
             let mut sum = 0;
 
             if check(&boards[ib], &mut sum) && !won[ib] {
-              println!("{n} {sum} {}", n * sum);
-              println!("{:?}", board);
+              p2 = n * sum;
+
+              if p1 == 0 {
+                p1 = p2;
+              }
+
               won[ib] = true;
-              // break 'root;
             }
           }
-
         }
-
       }
     }
 
-    let part1 = || 0;
-
-    let part2 = || 0;
+    let part1 = || p1;
+    let part2 = || p2;
 
     answer!(part, part1, part2)
   }
