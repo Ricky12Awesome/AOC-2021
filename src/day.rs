@@ -18,6 +18,13 @@ macro_rules! answer {
 }
 
 #[macro_export]
+macro_rules! input_path {
+    ($name:ident) => {
+      concat!("../assets/", stringify!($name))
+    };
+}
+
+#[macro_export]
 macro_rules! day {
   ($name:ident) => {
     day!($name, None, None);
@@ -25,8 +32,8 @@ macro_rules! day {
   ($name:ident, $p1:expr, $p2:expr) => {
     pub struct $name;
 
-    impl Input for $name {
-      const INPUT: &'static str = include_str!(concat!("../assets/", stringify!($name)));
+    impl Input<&'static str> for $name {
+      const INPUT: &'static str = include_str!(input_path!($name));
     }
 
     generate_tests_for_day!($name, $p1, $p2);
@@ -94,6 +101,6 @@ pub enum Part {
 #[allow(dead_code)]
 pub type Answer<T> = [Option<T>; 2];
 
-pub trait Input {
-  const INPUT: &'static str = "";
+pub trait Input<T: Sized + 'static> {
+  const INPUT: T;
 }
