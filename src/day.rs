@@ -1,4 +1,5 @@
 pub use std::collections::HashMap;
+pub use std::collections::HashSet;
 pub use std::fmt::Debug;
 
 pub use crate::util::*;
@@ -19,9 +20,9 @@ macro_rules! answer {
 
 #[macro_export]
 macro_rules! input_path {
-    ($name:ident) => {
-      concat!("../assets/", stringify!($name))
-    };
+  ($name:ident) => {
+    concat!("../assets/", stringify!($name))
+  };
 }
 
 #[macro_export]
