@@ -5,9 +5,9 @@ day!(Day4, Some(49860), Some(24628));
 impl Day4 {
   fn day(part: Part) -> Answer<u32> {
     let mut input = Self::INPUT.lines().filter(not_empty);
-    let numbers = input.unwrap_next().split(',').map(parse::<u32>);
+    let numbers = input.unwrap_next().split(',').map(parse_int::<u32>);
     let boards = input
-      .map(|it| it.split(' ').filter(not_empty).map(parse::<u32>).collect_vec())
+      .map(|it| it.split(' ').filter(not_empty).map(parse_int::<u32>).collect_vec())
       .collect_vec();
 
     let mut won_history = vec![];
