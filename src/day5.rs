@@ -1,6 +1,6 @@
 use crate::day::*;
 
-day!(Day5);
+day!(Day5, Some(6225), Some(22116));
 
 impl Day5 {
   fn day(part: Part) -> Answer<usize> {
