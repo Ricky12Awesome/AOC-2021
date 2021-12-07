@@ -1,3 +1,5 @@
+#![allow(unused)]
+
 pub use std::collections::HashMap;
 pub use std::collections::HashSet;
 pub use std::fmt::Debug;
@@ -92,14 +94,12 @@ macro_rules! generate_tests_for_day {
   };
 }
 
-#[allow(dead_code)]
 pub enum Part {
   One,
   Two,
   Both,
 }
 
-#[allow(dead_code)]
 pub type Answer<T> = [Option<T>; 2];
 
 pub trait Input<T: Sized + 'static> {
