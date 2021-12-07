@@ -1,5 +1,4 @@
 use crate::day::*;
-use std::collections::HashMap;
 
 day!(Day5);
 

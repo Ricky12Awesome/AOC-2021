@@ -1,3 +1,4 @@
+pub use std::collections::HashMap;
 pub use std::fmt::Debug;
 
 pub use crate::util::*;
