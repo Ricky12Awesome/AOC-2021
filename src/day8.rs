@@ -1,6 +1,5 @@
 use crate::day::*;
 
-
 //be cfbegad cbdgef fgaecd cgeb fdcge agebfd fecdb fabcd edb | fdgacbe cefdb cefbgd gcbe
 // edbfga begcd cbg gc gcadebf fbgde acbgfd abcde gfcbed gfec | fcgedb cgb dgebacf gc
 // fgaebd cg bdaec gdafb agbcfd gdcbef bgcad gfac gcb cdgabef | cg cg fdcagb cbg
@@ -16,16 +15,6 @@ day!(Day8);
 
 #[allow(unused)]
 impl Day8 {
-  fn segments(chars: Chars) -> u8 {
-    let mut num = 0;
-
-    for c in chars {
-      num |= 1 << (c as u8 - 97);
-    }
-
-    num
-  }
-
   fn day(part: Part) -> Answer<usize> {
     let segments = Self::INPUT
       .lines()
@@ -36,8 +25,8 @@ impl Day8 {
             .map(str::trim)
             .filter(not_empty)
             .map(str::chars)
-            .map(Self::segments)
-            .collect_vec()
+            .map(|it| it.fold(0u8, |n, c| n | 1 << (c as u8 - b'a')))
+            // .collect_vec()
         })
       })
       .map(|it| it.collect_arr::<2>())
@@ -46,23 +35,7 @@ impl Day8 {
     let mut p1 = 0;
 
     for [unique, output] in segments {
-      let mut v = Vec::with_capacity(unique.len());
-
-      for bits in unique {
-        match bits.count_ones() {
-          1 | 3 | 4 | 8 => v.push(bits),
-          _ => (),
-        }
-      }
-
-      'out: for output_bits in output {
-        for unique_bits in v.iter().copied() {
-          if (output_bits & unique_bits) ^ unique_bits == 0 {
-            p1 += 1;
-            continue 'out;
-          }
-        }
-      }
+      p1 += output.filter(|x| [2, 3, 4, 7].contains(&x.count_ones())).count()
     }
 
     let p1 = || p1;
