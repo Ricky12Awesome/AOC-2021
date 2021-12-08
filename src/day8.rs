@@ -5,28 +5,21 @@ day!(Day8, Some(294), Some(973292));
 #[allow(unused)]
 impl Day8 {
   fn day(part: Part) -> Answer<usize> {
-    let segments = Self::INPUT
-      .lines()
-      .map(|it| {
-        it.split('|').map(|it| {
-          it.split(' ')
-            .map(str::trim)
-            .filter(not_empty)
-            .map(str::chars)
-            .map(|chars| chars.fold(0u8, |n, c| n | 1 << (c as u8 - b'a')))
-            .collect_vec()
-        })
-      })
-      .map(|it| it.collect_arr::<2>());
+    let segments = Self::INPUT.lines().map(|it| {
+      it.split(" | ")
+        .map(str::split_whitespace)
+        .map(|it| it.map(|str| str.chars().fold(0u8, |n, c| n | 1 << (c as u8 - b'a'))))
+        .map(|it| it.collect_vec())
+        .collect_arr::<2>()
+    });
 
     let (mut p1, mut p2) = (0, 0);
 
     for [unique, output] in segments {
-      p1 += output.iter().filter(|x| [2, 3, 4, 7].contains(&x.count_ones())).count();
-
       let one = unique.iter().find(|it| it.count_ones() == 2).unwrap();
       let four = unique.iter().find(|it| it.count_ones() == 4).unwrap();
 
+      p1 += output.iter().filter(|x| [2, 3, 4, 7].contains(&x.count_ones())).count();
       p2 += output
         .iter()
         .map(
