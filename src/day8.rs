@@ -1,6 +1,6 @@
 use crate::day::*;
 
-day!(Day8);
+day!(Day8, Some(294), Some(973292));
 
 #[allow(unused)]
 impl Day8 {
