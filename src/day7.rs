@@ -13,10 +13,9 @@ impl Day7 {
     for n in compare {
       for pos in positions {
         let fuel = n.max(pos) - n.min(pos);
-        let cost = fuel * (fuel + 1) / 2;
 
         *fuels_p1.get_or_def_mut(n) += fuel;
-        *fuels_p2.get_or_def_mut(n) += cost;
+        *fuels_p2.get_or_def_mut(n) += fuel * (fuel + 1) / 2;
       }
     }
 

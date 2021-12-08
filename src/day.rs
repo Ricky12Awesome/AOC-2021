@@ -3,6 +3,7 @@
 pub use std::collections::HashMap;
 pub use std::collections::HashSet;
 pub use std::fmt::Debug;
+pub use std::str::Chars;
 
 pub use crate::util::*;
 
