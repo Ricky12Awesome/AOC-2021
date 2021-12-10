@@ -1,8 +1,8 @@
 use crate::day::*;
 
-day!(Day6, Some(380243), Some(1708791884591));
+day!(Day06, Some(380243), Some(1708791884591));
 
-impl Day6 {
+impl Day06 {
   fn day(part: Part) -> Answer<usize> {
     let states = Self::INPUT.split(',').map(parse_int::<usize>).collect_arr::<300>();
 

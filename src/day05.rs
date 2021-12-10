@@ -1,8 +1,8 @@
 use crate::day::*;
 
-day!(Day5, Some(6225), Some(22116));
+day!(Day05, Some(6225), Some(22116));
 
-impl Day5 {
+impl Day05 {
   #[rustfmt::skip]
   #[allow(clippy::comparison_chain)]
   fn day(part: Part) -> Answer<usize> {

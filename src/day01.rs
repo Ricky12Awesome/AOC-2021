@@ -1,8 +1,8 @@
 use crate::day::*;
 
-day!(Day1, Some(1655), Some(1683));
+day!(Day01, Some(1655), Some(1683));
 
-impl Day1 {
+impl Day01 {
   fn day(part: Part) -> Answer<usize> {
     let input = Self::INPUT
       .lines()

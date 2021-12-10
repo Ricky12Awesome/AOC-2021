@@ -1,8 +1,8 @@
 use crate::day::*;
 
-day!(Day4, Some(49860), Some(24628));
+day!(Day04, Some(49860), Some(24628));
 
-impl Day4 {
+impl Day04 {
   fn day(part: Part) -> Answer<u32> {
     let mut input = Self::INPUT.lines().filter(not_empty);
     let numbers = input.unwrap_next().split(',').map(parse_int::<u32>);

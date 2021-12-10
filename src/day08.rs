@@ -1,8 +1,8 @@
 use crate::day::*;
 
-day!(Day8, Some(294), Some(973292));
+day!(Day08, Some(294), Some(973292));
 
-impl Day8 {
+impl Day08 {
   fn day(part: Part) -> Answer<usize> {
     let segments = Self::INPUT.lines().map(|it| {
       it.split(" | ")

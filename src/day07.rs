@@ -1,8 +1,8 @@
 use crate::day::*;
 
-day!(Day7, Some(323647), Some(87640209));
+day!(Day07, Some(323647), Some(87640209));
 
-impl Day7 {
+impl Day07 {
   fn day(part: Part) -> Answer<usize> {
     let positions = Self::INPUT.split(',').map(parse_int::<usize>).collect_arr::<1000>();
     let compare = 0..*positions.iter().max().unwrap();

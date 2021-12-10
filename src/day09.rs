@@ -1,8 +1,8 @@
 use crate::day::*;
 
-day!(Day9, Some(452), Some(1263735));
+day!(Day09, Some(452), Some(1263735));
 
-impl Day9 {
+impl Day09 {
   fn day(part: Part) -> Answer<usize> {
     let input = Self::INPUT.lines().map(|it| it.chars().map(parse_char::<usize>));
     let mut map = HashMap::<[isize; 2], usize>::new();
