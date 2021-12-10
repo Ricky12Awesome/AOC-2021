@@ -4,10 +4,10 @@ day!(Day10, Some(394647), Some(2380061249));
 
 impl Day10 {
   fn day(part: Part) -> Answer<usize> {
-    let mut incorrect = 0;
     let mut correct = Vec::new();
+    let mut incorrect = 0;
 
-    'line: for line in Self::INPUT.lines().map(|it| it.chars()) {
+    'line: for line in Self::INPUT.lines().map(str::chars) {
       let mut open = Vec::new();
 
       for c in line {
@@ -42,7 +42,7 @@ impl Day10 {
             '<' => 4,
             _ => unreachable!(),
           })
-          .fold(0usize, |curr, value| curr * 5 + value),
+          .fold(0usize, |acc, val| acc * 5 + val),
       )
     }
 
